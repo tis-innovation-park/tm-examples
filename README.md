@@ -4,6 +4,6 @@
 
 In this folder you will find examples on how Testing machine have been used to test various eGov sites
 
-## [build](Build examples)
+## [Build examples](build)
 
 In this folder you will find examples on how Testing machine have been used to compile/build software projects
