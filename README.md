@@ -1,4 +1,4 @@
-# Examples on ho Testing machine is ued on various projects
+# Examples on how Testing machine is ued on various projects
 
 ## [eGov](eGov) 
 
