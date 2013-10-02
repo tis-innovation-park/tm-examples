@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="My Test Suite">
+  <test name="My Test">
+
+    <classes>
+      <class name="eu.testingmachine.TMTest" />
+    </classes>
+  </test>
+</suite>
