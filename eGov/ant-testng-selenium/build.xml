@@ -19,14 +19,14 @@
 
   <target name="compile">
     <mkdir dir="bin"/>
-    <javac srcdir="src" destdir="bin">
+    <javac srcdir="src" destdir="bin" includeantruntime="false">
       <classpath refid="classpath"/>
     </javac>
   </target>
 
   <target name="testng" depends="compile">
     <mkdir dir="testng_output"/>
-    <testng outputdir="testng_output" classpathref="classes">
+    <testng outputdir="testng_output" classpathref="classes" listeners="org.uncommons.reportng.HTMLReporter">
       <xmlfileset dir="." includes="testng.xml"/>
       <classpath refid="classpath"/>
     </testng>
