@@ -60,32 +60,61 @@ public class TMTest {
     }
   }
 
-  @Test
-  public void verifyPageTitle() {
+@Test
+public void verifyAllServices() {
 
-    // Make sure the page loads on AVD before checking...
-
-    //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-    String expectedTitle = "Schulkalender (Deutsches Schulamt) | Dienste A-Z | Südtiroler Bürgernetz";
+    driver.get(baseUrl);
+    String expectedTitle = "Dienste A-Z | Südtiroler Bürgernetz";
     String actualTitle = driver.getTitle();
     Assert.assertEquals(actualTitle, expectedTitle);
+    
+}
+  
+  
+  
+  @Test
+  public void verifyAbendSchule() {
+        
+      driver.get("http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_tgid=1000540");
+      driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+      String expectedTitle = "Abendschulen | Dienste A-Z | Südtiroler Bürgernetz";
+      String actualTitle = driver.getTitle();
+      Assert.assertEquals(actualTitle, expectedTitle);
+      driver.navigate().back();
+        
+      /*// Abendschule fuer Erwachsene
+	  driver.get("http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1003544");
+	  driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+	  String heading = driver.findElement(By.cssSelector("div.main>h1")).getText();
+	  Assert.assertTrue(heading.contains("Abendschule für Erwachsene - Mittelschule (Italienisches Schulamt)"));
+		  
+      */
+        
+  
+        
   }
   
   @Test
-  public void verifyPageText() {
-    String expectedText = "Schulkalender (Deutsches Schulamt) | Dienste A-Z | Südtiroler Bürgernetz";
-
-    // driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-    // Not too sure exactly what to check for yet, need to take a closer look at API
-    String bodyText = driver.findElement(By.tagName("h2")).getText();
-    // Assert.assertEquals(actualText, expectedText);
-    Assert.assertEquals(bodyText, expectedText);
+  public void verifyAbfertigung() {
+        
+      driver.get("http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_tgid=10969");
+      driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        
+      String expectedTitle = "Abfertigung | Dienste A-Z | Südtiroler Bürgernetz";
+      String actualTitle = driver.getTitle();
+      Assert.assertEquals(actualTitle, expectedTitle);
+        
   }
   
-  @AfterTest
-  public void sendSession() {
-    driver.close();
-    //  driver.quit();
+  @Test
+  public void verifyAbgaben() {
+        
+      driver.get("http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_tgid=1004820");
+      driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        
+      String expectedTitle = "Abgaben | Dienste A-Z | Südtiroler Bürgernetz";
+      String actualTitle = driver.getTitle();
+      Assert.assertEquals(actualTitle, expectedTitle);
   }
 } 
