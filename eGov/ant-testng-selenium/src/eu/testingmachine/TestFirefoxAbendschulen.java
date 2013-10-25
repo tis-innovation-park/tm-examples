@@ -198,6 +198,85 @@ public class TestFireFoxAbendschulen {
 	Assert.assertEquals("http://www.provinz.bz.it/schulamt/verwaltung/111.asp?intOrga_id=8", driver.findElement(By.xpath("//a[contains(.,'http://www.provinz.bz.it/schulamt/verwaltung/111.asp?intOrga_id=8')]")).getText());
 
     }
+
+    //Start testing Schulkalender http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1029144
+    
+    @Test
+    public void verifyLinkSchulKalender() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalender();
+	String expectedTitle = "Schulkalender (Deutsches Schulamt) | Dienste A-Z | Südtiroler Bürgernetz";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+	
+    }
+    
+    @Test
+    public void verifyTextSchulkalender() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalender();
+	String expectedTitle = "Schulkalender (Deutsches Schulamt) | Dienste A-Z | Südtiroler Bürgernetz";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+	Assert.assertEquals("An den Südtiroler Grund-, Mittel- und Oberschulen mit deutscher Unterrichtssprache findet der Unterricht an fünf Tagen pro Woche statt. Einige wenige Oberschulen haben die Sechs-Tage-Woche. Eine Schule kann die Unterrichtsstunden auch auf sechs Wochentage verteilen, wenn Sie gemäß Landesgesetz Nr. 13 vom 13. Juli 2012 die Ermächtigung dafür erhält.", driver.findElement(By.xpath("//div[@id='main']/p[1]")).getText());
+
+    }
+    
+    // Verify all links on http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1029144
+    
+    @Test
+    public void verifyLinkDeutschenSchulamtes() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalender();
+	driver.findElement(By.linkText("Webseite der für diesen Dienst zuständigen Institution")).click();
+	String expectedTitle = "Autonome Provinz Bozen - Südtirol | Deutsches Schulamt";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+    }
+    
+    @Test
+    public void verifyLinkSchulkalenderWebsite() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalender();
+	driver.findElement(By.linkText("Webseite der für diesen Dienst zuständigen Institution")).click();
+	String expectedTitle = "Autonome Provinz Bozen - Südtirol | Deutsches Schulamt";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+    }
+    
+    
+    //Verify all contact links on http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1029144
+    
+    @Test
+    public void checkSchulkalenderContactEmail() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalender();
+	Assert.assertEquals("deutsches.schulamt@schule.suedtirol.it", driver.findElement(By.linkText("deutsches.schulamt@schule.suedtirol.it")).getText());
+    }
+    
+    @Test
+    public void checkSchulkalenderContactPEC() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalender();
+	Assert.assertEquals("schulamt.intendenzascolastica@pec.prov.bz.it", driver.findElement(By.linkText("schulamt.intendenzascolastica@pec.prov.bz.it")).getText());
+	
+    }
+    
+    @Test
+    public void checkSchuleKalenderContactWebsite() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalender();
+	Assert.assertEquals("http://www.provinz.bz.it/schulamt/", driver.findElement(By.xpath("//a[contains(.,'http://www.provinz.bz.it/schulamt/')]")).getText());
+
+    }
+
     
     private void loadServicesPage() {
 	driver.get("http://www.provinz.bz.it/de/dienste/dienste-az.asp");
