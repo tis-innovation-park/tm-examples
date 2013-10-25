@@ -122,6 +122,8 @@ public class TestFireFoxAbendschulen {
 	clickAndLoadAbendschulen();
 	clickAndLoadAbendschulenErwachsen();
 	Assert.assertEquals("http://www.provinz.bz.it/italienisches-schulamt/verwaltung/83.asp", driver.findElement(By.linkText("http://www.provinz.bz.it/italienisches-schulamt/verwaltung/83.asp")).getText());
+
+
     }
     
     //Start testing Abendoberschule http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1005822
@@ -176,7 +178,7 @@ public class TestFireFoxAbendschulen {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
 	clickAndLoadAbendoberschule();
-	Assert.assertEquals("sa.schulverwaltung@schule.suedtirol.it", driver.findElement(By.linkText("is.organici@scuola.alto-adige.it")).getText());
+	Assert.assertEquals("sa.schulverwaltung@schule.suedtirol.it", driver.findElement(By.linkText("sa.schulverwaltung@schule.suedtirol.it")).getText());
     }
 
     @Test
@@ -184,7 +186,7 @@ public class TestFireFoxAbendschulen {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
 	clickAndLoadAbendoberschule();
-	Assert.assertEquals("schulverwaltung.ammscolastica@pec.prov.bz.it", driver.findElement(By.linkText("is.organici@pec.prov.bz.it")).getText());
+	Assert.assertEquals("schulverwaltung.ammscolastica@pec.prov.bz.it", driver.findElement(By.linkText("schulverwaltung.ammscolastica@pec.prov.bz.it")).getText());
 
     }
 
@@ -193,7 +195,8 @@ public class TestFireFoxAbendschulen {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
 	clickAndLoadAbendoberschule();
-	Assert.assertEquals("http://www.provinz.bz.it/schulamt/verwaltung/111.asp?intOrga_id=8", driver.findElement(By.linkText("http://www.provinz.bz.it/italienisches-schulamt/verwaltung/83.asp")).getText());
+	Assert.assertEquals("http://www.provinz.bz.it/schulamt/verwaltung/111.asp?intOrga_id=8", driver.findElement(By.xpath("//a[contains(.,'http://www.provinz.bz.it/schulamt/verwaltung/111.asp?intOrga_id=8')]")).getText());
+
     }
     
     private void loadServicesPage() {
