@@ -199,13 +199,13 @@ public class TestFireFoxAbendschulen {
 
     }
 
-    //Start testing Schulkalender http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1029144
+    //Start testing Schulkalender (Deutsches Schulamt)  http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1029144
     
     @Test
-    public void verifyLinkSchulKalender() {
+    public void verifyLinkSchulKalenderDE() {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
-	clickAndLoadSchulkalender();
+	clickAndLoadSchulkalenderDE();
 	String expectedTitle = "Schulkalender (Deutsches Schulamt) | Dienste A-Z | Südtiroler Bürgernetz";
 	String actualTitle = driver.getTitle();
 	Assert.assertEquals(actualTitle, expectedTitle);
@@ -213,10 +213,10 @@ public class TestFireFoxAbendschulen {
     }
     
     @Test
-    public void verifyTextSchulkalender() {
+    public void verifyTextSchulkalenderDE() {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
-	clickAndLoadSchulkalender();
+	clickAndLoadSchulkalenderDE();
 	String expectedTitle = "Schulkalender (Deutsches Schulamt) | Dienste A-Z | Südtiroler Bürgernetz";
 	String actualTitle = driver.getTitle();
 	Assert.assertEquals(actualTitle, expectedTitle);
@@ -230,7 +230,7 @@ public class TestFireFoxAbendschulen {
     public void verifyLinkDeutschenSchulamtes() {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
-	clickAndLoadSchulkalender();
+	clickAndLoadSchulkalenderDE();
 	driver.findElement(By.linkText("Webseite der für diesen Dienst zuständigen Institution")).click();
 	String expectedTitle = "Autonome Provinz Bozen - Südtirol | Deutsches Schulamt";
 	String actualTitle = driver.getTitle();
@@ -238,10 +238,10 @@ public class TestFireFoxAbendschulen {
     }
     
     @Test
-    public void verifyLinkSchulkalenderWebsite() {
+    public void verifyLinkSchulkalenderWebsiteDE() {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
-	clickAndLoadSchulkalender();
+	clickAndLoadSchulkalenderDE();
 	driver.findElement(By.linkText("Webseite der für diesen Dienst zuständigen Institution")).click();
 	String expectedTitle = "Autonome Provinz Bozen - Südtirol | Deutsches Schulamt";
 	String actualTitle = driver.getTitle();
@@ -252,32 +252,138 @@ public class TestFireFoxAbendschulen {
     //Verify all contact links on http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1029144
     
     @Test
-    public void checkSchulkalenderContactEmail() {
+    public void checkSchulkalenderDEContactEmail() {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
-	clickAndLoadSchulkalender();
+	clickAndLoadSchulkalenderDE();
 	Assert.assertEquals("deutsches.schulamt@schule.suedtirol.it", driver.findElement(By.linkText("deutsches.schulamt@schule.suedtirol.it")).getText());
     }
     
     @Test
-    public void checkSchulkalenderContactPEC() {
+    public void checkSchulkalenderDEContactPEC() {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
-	clickAndLoadSchulkalender();
+	clickAndLoadSchulkalenderDE();
 	Assert.assertEquals("schulamt.intendenzascolastica@pec.prov.bz.it", driver.findElement(By.linkText("schulamt.intendenzascolastica@pec.prov.bz.it")).getText());
 	
     }
     
     @Test
-    public void checkSchuleKalenderContactWebsite() {
+    public void checkSchuleKalenderDEContactWebsite() {
 	loadServicesPage();
 	clickAndLoadAbendschulen();
-	clickAndLoadSchulkalender();
+	clickAndLoadSchulkalenderDE();
 	Assert.assertEquals("http://www.provinz.bz.it/schulamt/", driver.findElement(By.xpath("//a[contains(.,'http://www.provinz.bz.it/schulamt/')]")).getText());
 
     }
 
+    //Start testing Schulkalender (Italienisches Schulamt)  http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1002760
     
+    @Test
+    public void verifyLinkSchulKalenderIT() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	String expectedTitle = "Schulkalender (Italienisches Schulamt) | Dienste A-Z | Südtiroler Bürgernetz";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+	
+    }
+    
+    @Test
+    public void verifyTextSchulkalenderIT() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	String expectedTitle = "Schulkalender (Italienisches Schulamt) | Dienste A-Z | Südtiroler Bürgernetz";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+	Assert.assertEquals("Dieser Dienst wird vom Italienischen Schulamt angeboten. Die nachfolgenden Informationen liegen nur in italienischer Sprache vor.", driver.findElement(By.xpath("//div[@id='main']/p[2]")).getText());
+
+    }
+    
+    // Verify all links on http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1002760
+    
+    @Test
+    public void verifyLinkImageFormulare() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	driver.findElement(By.xpath (".//*[@id='main']/p[1]/a/img")).click();
+	Assert.assertEquals("Beschluss vom 23. Januar 2012, Nr. 75 (abgeändert mit Beschluss Nr. 210 vom 13.02.2012) - Schulkalender ›", driver.findElement(By.xpath(".//*[@id='servicelink']/table/tbody/tr/td[2]/ul/li/a")).getText());
+
+    }
+    
+    @Test
+    public void verifyLinkGiuntaProvinciale() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	driver.findElement(By.linkText("n. 75/2012")).click();
+	String expectedTitle = "Beschluss vom 23. Januar 2012, Nr. 75 (abgeändert mit Beschluss Nr. 210 vom 13.02.2012) - Kindergarten- und Schulkalender | Formulare nach Kategorien | Südtiroler Bürgernetz";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+    }
+    
+    @Test
+    public void verifyLinkGesetzbestimmungen() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	driver.findElement(By.linkText("Beschluss vom 23. Januar 2012, Nr. 75 (abgeändert mit Beschluss Nr. 210 vom 13.02.2012)")).click();
+	String expectedTitle = "Beschluss vom 23. Januar 2012, Nr. 75 (abgeändert mit Beschluss Nr. 210 vom 13.02.2012) - Kindergarten- und Schulkalender | Formulare nach Kategorien | Südtiroler Bürgernetz";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+	Assert.assertEquals("Beschluss vom 23. Januar 2012, Nr. 75 (abgeändert mit Beschluss Nr. 210 vom 13.02.2012) - Kindergarten- und Schulkalender", driver.findElement(By.xpath(".//*[@id='main']/h1")).getText());
+
+    }
+    
+    @Test
+    public void verifyLinkWebsiteInstitution() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	driver.findElement(By.linkText("Webseite der für diesen Dienst zuständigen Institution")).click();
+	String expectedTitle = "Calendario scolastico | Intendenza scolastica italiana | Provincia autonoma di Bolzano - Alto Adige";
+	String actualTitle = driver.getTitle();
+	Assert.assertEquals(actualTitle, expectedTitle);
+    }
+    
+    //Verify all contact links on http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1002760
+    
+    @Test
+    public void checkSchulkalenderITContactEmail() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	Assert.assertEquals("is.ord-scol@scuola.alto-adige.it", driver.findElement(By.linkText("is.ord-scol@scuola.alto-adige.it")).getText());
+    }
+    
+    @Test
+    public void checkSchulkalenderITContactPEC() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	Assert.assertEquals("is.ord-scol@pec.prov.bz.it", driver.findElement(By.linkText("is.ord-scol@pec.prov.bz.it")).getText());
+	
+    }
+    
+    @Test
+    public void checkSchuleKalenderITContactWebsite() {
+	loadServicesPage();
+	clickAndLoadAbendschulen();
+	clickAndLoadSchulkalenderIT();
+	Assert.assertEquals("http://www.provinz.bz.it/italienisches-schulamt/verwaltung/83.asp", driver.findElement(By.xpath("//a[contains(.,'http://www.provinz.bz.it/italienisches-schulamt/')]")).getText());
+
+    }
+    
+        
+    //TODO
+    /* Find a smart way to check if download link provides the correct status code.
+     * 
+     */
+
+
     private void loadServicesPage() {
 	driver.get("http://www.provinz.bz.it/de/dienste/dienste-az.asp");
     }
@@ -292,6 +398,14 @@ public class TestFireFoxAbendschulen {
     
     private void clickAndLoadAbendoberschule() {
 	driver.findElement(By.linkText("Deutschsprachige Abendoberschule")).click();
+    }
+
+    private void clickAndLoadSchulkalenderDE() {
+	driver.findElement(By.linkText("Schulkalender (Deutsches Schulamt)")).click();
+    }
+    
+    private void clickAndLoadSchulkalenderIT() {
+	driver.findElement(By.linkText("Schulkalender (Italienisches Schulamt)")).click();
     }
     
 }
