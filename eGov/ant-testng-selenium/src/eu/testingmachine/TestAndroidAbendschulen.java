@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class TestFireFoxAbendschulen {
+public class TestAndroidAbendschulen {
  
     // create a WebDriver
     WebDriver driver;
