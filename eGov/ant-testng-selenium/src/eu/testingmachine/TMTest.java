@@ -34,7 +34,7 @@ public class TMTest
   @BeforeClass
   public void init()
   {
-    // Limit the amount of times we will retry.
+    // TODO: Limit the amount of times we will retry.
     while(driver == null)
     {
       setDriver();
