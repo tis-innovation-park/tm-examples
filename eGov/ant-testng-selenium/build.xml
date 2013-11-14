@@ -26,7 +26,7 @@
 
   <target name="testng" depends="compile">
     <mkdir dir="testng_output"/>
-    <testng outputdir="testng_output" classpathref="classes" listeners="org.uncommons.reportng.HTMLReporter">
+    <testng classpathref="classes" delegateCommandSystemProperties="true" listeners="org.uncommons.reportng.HTMLReporter" outputdir="testng_output">
       <xmlfileset dir="." includes="testng.xml"/>
       <classpath refid="classpath"/>
     </testng>
