@@ -5,6 +5,7 @@
 
     <classes>
       <class name="eu.testingmachine.TMTest" />
+      <class name="eu.testingmachine.SeleniumTests" />
     </classes>
   </test>
 </suite>
