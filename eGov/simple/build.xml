@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." default="testng" name="Sample of Ant file for TestNG">
 
+  <property name="tm.testngOutput" value="testng_output" />
+
   <taskdef name="testng" classname="org.testng.TestNGAntTask">
     <classpath>
       <pathelement location="lib/testng-6.8.5.jar"/>
@@ -25,8 +27,8 @@
   </target>
 
   <target name="testng" depends="compile">
-    <mkdir dir="testng_output"/>
-    <testng classpathref="classes" delegateCommandSystemProperties="true" listeners="org.uncommons.reportng.HTMLReporter" outputdir="testng_output">
+    <mkdir dir="${tm.testngOutput}"/>
+    <testng classpathref="classes" delegateCommandSystemProperties="true" listeners="org.uncommons.reportng.HTMLReporter" outputdir="${tm.testngOutput}">
       <xmlfileset dir="." includes="testng.xml"/>
       <classpath refid="classpath"/>
     </testng>
