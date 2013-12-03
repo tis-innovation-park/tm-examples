@@ -23,140 +23,110 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 
-public class TMTest
-{
-  private static int driverAttempts;
-  
-  @DataProvider(name = "driver")
-  public static Object[][] init()
-  {
-	WebDriver driver = null;
-	driverAttempts = 0;
-	  
-    while(driver == null)
-    {
-      driver = setDriver();
-    }
-    
-    return new Object[][]
-    		{
-    			new Object[] { driver }
-    		};
-  }
+public class TMTest {
+	private static int driverAttempts;
 
-  public static WebDriver setDriver()
-  {
-	WebDriver driver = null;
-	  
-    driverAttempts++;
+	@DataProvider(name = "driver")
+	public static Object[][] init() {
+		WebDriver driver = null;
+		driverAttempts = 0;
 
-    try
-    {
-      switch(System.getProperty("tm.seleniumDriver"))
-      {
-      case "AndroidDriver":
-      {
-        if(System.getProperty("tm.seleniumUrl") == null)
-        {
-          driver = new AndroidDriver();
-        }
-        else
-        {
-          URL url;
-          
-          try
-          {
-            url = new URL(System.getProperty("tm.seleniumUrl"));
-          }
-          catch(MalformedURLException e)
-          {
-            e.printStackTrace();
-            throw new RuntimeException("Malformed Selenium URL.");
-          }
-          
-          driver = new AndroidDriver(url);
-        }
+		while (driver == null) {
+			driver = setDriver();
+		}
 
-        break;
-      }
+		return new Object[][] { new Object[] { driver } };
+	}
 
-      case "RemoteWebDriver":
-      {
-        if(System.getProperty("tm.seleniumUrl") == null)
-        {
-          throw new RuntimeException("tm.seleniumUrl needs to be set for RemoteWebDriver.");
-        }
-        else
-        {
-          URL url;
-          
-          try
-          {
-            url = new URL(System.getProperty("tm.seleniumUrl"));
-          }
-          catch(MalformedURLException e)
-          {
-            e.printStackTrace();
-            throw new RuntimeException("Malformed Selenium URL.");
-          }
-          
-          Capabilities caps = DesiredCapabilities.firefox();
-          
-          if(System.getProperty("tm.browser") != null && System.getProperty("tm.browser").equals("chrome"))
-          {
-              caps = DesiredCapabilities.chrome();
-          }
-          
-          driver = new RemoteWebDriver(url, caps);
-        }
+	public static WebDriver setDriver() {
+		WebDriver driver = null;
 
-        break;
-      }
+		driverAttempts++;
 
-        case "ChromeDriver":
-        {
-          if(System.getProperty("webdriver.chrome.driver") == null)
-          {
-            throw new RuntimeException("webdriver.chrome.driver needs to be set.");
-          }
+		try {
+			switch (System.getProperty("tm.seleniumDriver")) {
+			case "AndroidDriver": {
+				if (System.getProperty("tm.seleniumUrl") == null) {
+					driver = new AndroidDriver();
+				} else {
+					URL url;
 
-          driver = new ChromeDriver();
+					try {
+						url = new URL(System.getProperty("tm.seleniumUrl"));
+					} catch (MalformedURLException e) {
+						e.printStackTrace();
+						throw new RuntimeException("Malformed Selenium URL.");
+					}
 
-          break;
-        }
+					driver = new AndroidDriver(url);
+				}
 
-        case "FirefoxDriver":
-        {
-          driver = new FirefoxDriver();
+				break;
+			}
 
-          break;
-        }
+			case "RemoteWebDriver": {
+				if (System.getProperty("tm.seleniumUrl") == null) {
+					throw new RuntimeException(
+							"tm.seleniumUrl needs to be set for RemoteWebDriver.");
+				} else {
+					URL url;
 
-        default:
-        {
-          throw new RuntimeException("Unimplemented Selenium driver.");
-        }
-      }
-    }
-    catch(UnreachableBrowserException e)
-    {
-      System.out.println("Could not set driver...");
+					try {
+						url = new URL(System.getProperty("tm.seleniumUrl"));
+					} catch (MalformedURLException e) {
+						e.printStackTrace();
+						throw new RuntimeException("Malformed Selenium URL.");
+					}
 
-      if(driverAttempts == 10)
-      {
-        throw new RuntimeException("Could not get the Selenium driver.");
-      }
+					Capabilities caps = DesiredCapabilities.firefox();
 
-      try
-      {
-        Thread.sleep(1000);
-      }
-      catch(InterruptedException e_)
-      {
-        e_.printStackTrace();
-      }
-    }
-    
-	return driver;
-  }
+					if (System.getProperty("tm.browser") != null
+							&& System.getProperty("tm.browser")
+									.equals("chrome")) {
+						caps = DesiredCapabilities.chrome();
+					}
+
+					driver = new RemoteWebDriver(url, caps);
+				}
+
+				break;
+			}
+
+			case "ChromeDriver": {
+				if (System.getProperty("webdriver.chrome.driver") == null) {
+					throw new RuntimeException(
+							"webdriver.chrome.driver needs to be set.");
+				}
+
+				driver = new ChromeDriver();
+
+				break;
+			}
+
+			case "FirefoxDriver": {
+				driver = new FirefoxDriver();
+
+				break;
+			}
+
+			default: {
+				throw new RuntimeException("Unimplemented Selenium driver.");
+			}
+			}
+		} catch (UnreachableBrowserException e) {
+			System.out.println("Could not set driver...");
+
+			if (driverAttempts == 10) {
+				throw new RuntimeException("Could not get the Selenium driver.");
+			}
+
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e_) {
+				e_.printStackTrace();
+			}
+		}
+
+		return driver;
+	}
 }
