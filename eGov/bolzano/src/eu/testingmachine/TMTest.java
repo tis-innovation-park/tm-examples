@@ -8,6 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.android.AndroidDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.internal.FindsByClassName;
@@ -53,31 +54,64 @@ public class TMTest
     {
       switch(System.getProperty("tm.seleniumDriver"))
       {
-        case "AndroidDriver":
+      case "AndroidDriver":
+      {
+        if(System.getProperty("tm.seleniumUrl") == null)
         {
-          if(System.getProperty("tm.seleniumUrl") == null)
-          {
-            driver = new AndroidDriver();
-          }
-          else
-          {
-            URL url;
-            
-            try
-            {
-              url = new URL(System.getProperty("tm.seleniumUrl"));
-            }
-            catch(MalformedURLException e)
-            {
-              e.printStackTrace();
-              throw new RuntimeException("Malformed Selenium URL.");
-            }
-            
-            driver = new AndroidDriver(url);
-          }
-
-          break;
+          driver = new AndroidDriver();
         }
+        else
+        {
+          URL url;
+          
+          try
+          {
+            url = new URL(System.getProperty("tm.seleniumUrl"));
+          }
+          catch(MalformedURLException e)
+          {
+            e.printStackTrace();
+            throw new RuntimeException("Malformed Selenium URL.");
+          }
+          
+          driver = new AndroidDriver(url);
+        }
+
+        break;
+      }
+
+      case "RemoteWebDriver":
+      {
+        if(System.getProperty("tm.seleniumUrl") == null)
+        {
+          throw new RuntimeException("tm.seleniumUrl needs to be set for RemoteWebDriver.");
+        }
+        else
+        {
+          URL url;
+          
+          try
+          {
+            url = new URL(System.getProperty("tm.seleniumUrl"));
+          }
+          catch(MalformedURLException e)
+          {
+            e.printStackTrace();
+            throw new RuntimeException("Malformed Selenium URL.");
+          }
+          
+          Capabilities caps = DesiredCapabilities.firefox();
+          
+          if(System.getProperty("tm.browser") != null && System.getProperty("tm.browser").equals("chrome"))
+          {
+              caps = DesiredCapabilities.chrome();
+          }
+          
+          driver = new RemoteWebDriver(url, caps);
+        }
+
+        break;
+      }
 
         case "ChromeDriver":
         {
