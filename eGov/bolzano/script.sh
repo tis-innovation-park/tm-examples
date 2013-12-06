@@ -1,11 +1,5 @@
 #!/bin/sh
 
-CLIENT_IP=localhost
-if [ "$1" = "--client" ]
-then
-    CLIENT_IP=$2
-fi
-
 exit_on_failure() 
 {
     RET_VAL=$1
