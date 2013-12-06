@@ -5,7 +5,7 @@ exit_on_failure()
     RET_VAL=$1
     COMMENT=$2
 
-    if [ "$RET_VAL" = "0" ]
+    if [ "$RET_VAL" != "0" ]
     then
 	echo "ERROR: $RET_VAL"
 	echo $COMMENT
@@ -20,7 +20,8 @@ tm-vmm --client-exec $CLIENT_NAME "killall java; DISPLAY=:0 nohup java -jar sele
 exit_on_failure $? "Start Selenium on $CLIENT_NAME"
 
 sleep 15
+exit_on_failure $? "Computer is not tired today"
 
-ant -Dtm.seleniumDriver=RemoteWebDriver -Dtm.seleniumUrl=http://${CLIENT_IP}:4444/wd/hub
+ant -Dtm.seleniumDriver=RemoteWebDriver -Dtm.seleniumUrl=http://localhost:4444/wd/hub -Dtm.testngOutput=test_results/$CLIENT_NAME-`date +%Y-%m-%d`
 exit_on_failure $? "Executing ant build file"
 
