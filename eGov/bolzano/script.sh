@@ -59,13 +59,15 @@ if [ "$CLIENT_STARTED" = "0" ]; then
 	exit_on_failure 1 "Unsupported client type: $CLIENT_TYPE"
     fi
 
-    if [ -e "test_results/$CLIENT_NAME-$DATE/testng-failed.xml" ]; then
-	echo -e "\t\t<result>1</result>" >> $XML_FILE
-    else
+    FAILURES=$(cat test_results/$CLIENT_NAME-$DATE/xml/eu.testingmachine.SeleniumTests_results.xml | grep "           failures=" | cut -d "\"" -f 2)
+
+    if [ "$FAILURES" = "0" ]; then
 	echo -e "\t\t<result>0</result>" >> $XML_FILE
+    else
+	echo -e "\t\t<result>1</result>" >> $XML_FILE
     fi
 
-    echo -e "\t\t<logfile>`readlink -f test_results/$CLIENT_NAME-$DATE/index.html`</logfile>" >> $XML_FILE
+    echo -e "\t\t<logfile>`readlink -f test_results/$CLIENT_NAME-$DATE/html/index.html`</logfile>" >> $XML_FILE
     echo -e "\t</test>" >> $XML_FILE
 
     echo -e "\t<client-stop>$?</client-stop>" >> $XML_FILE
