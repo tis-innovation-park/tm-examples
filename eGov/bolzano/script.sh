@@ -38,7 +38,8 @@ if [ "$CLIENT_STARTED" = "0" ]; then
             exit_on_failure $? "Computer is not tired today"
 
             rm -R test_results/$CLIENT_NAME-$DATE 2> /dev/null
-            ant -Dtm.seleniumDriver=RemoteWebDriver -Dtm.seleniumUrl=http://localhost:4444/wd/hub -Dtm.testngOutput=test_results/$CLIENT_NAME-$DATE
+            ant -Dtm.seleniumDriver=RemoteWebDriver -Dtm.seleniumUrl=http://localhost:4444/wd/hub -Dtm.testngOutput=test_results/$CLIENT_NAME
+#	    ant -Dtm.seleniumDriver=RemoteWebDriver -Dtm.seleniumUrl=http://localhost:4444/wd/hub -Dtm.testngOutput=test_results/$CLIENT_NAME-$DATE
             exit_on_failure $? "Executing ant build file"
 	fi
     elif [ "$CLIENT_TYPE" = "Android" ]; then
