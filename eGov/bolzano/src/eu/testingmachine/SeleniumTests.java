@@ -70,35 +70,35 @@ public class SeleniumTests {
 						.getText());
 	}
 
-	// Verify all links on
-	// http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1003544
+        //  Verify all links on
+        //  http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1003544
 
-//	@Test
-//	public void verifyLinkScolastica() {
-//		loadServicesPage();
-//		clickAndLoadAbendschulen();
-//		clickAndLoadAbendschulenErwachsen();
-//		driver.findElement(
-//				By.linkText("sito dell'Intendenza scolastica italiana"))
-//				.click();
-//		String expectedTitle = "Corsi per adulti | Intendenza scolastica italiana | Provincia autonoma di Bolzano - Alto Adige";
-//		String actualTitle = driver.getTitle();
-//		Assert.assertEquals(actualTitle, expectedTitle);
-//
-//	}
-//
-//	@Test
-//	public void verifyLinkAbendschuleWebsite() {
-//		loadServicesPage();
-//		clickAndLoadAbendschulen();
-//		clickAndLoadAbendschulenErwachsen();
-//		driver.findElement(
-//				By.linkText("Webseite der für diesen Dienst zuständigen Institution"))
-//				.click();
-//		String expectedTitle = "Corsi per adulti | Intendenza scolastica italiana | Provincia autonoma di Bolzano - Alto Adige";
-//		String actualTitle = driver.getTitle();
-//		Assert.assertEquals(actualTitle, expectedTitle);
-//	}
+	@Test
+	public void verifyLinkScolastica() {
+		loadServicesPage();
+		clickAndLoadAbendschulen();
+		clickAndLoadAbendschulenErwachsen();
+		driver.findElement(
+				By.linkText("sito dell'Intendenza scolastica italiana"))
+				.click();
+		String expectedTitle = "Corsi per adulti | Intendenza scolastica italiana | Provincia autonoma di Bolzano - Alto Adige";
+		String actualTitle = driver.getTitle();
+		Assert.assertEquals(actualTitle, expectedTitle);
+
+	}
+
+	@Test
+	public void verifyLinkAbendschuleWebsite() {
+		loadServicesPage();
+		clickAndLoadAbendschulen();
+		clickAndLoadAbendschulenErwachsen();
+		driver.findElement(
+				By.linkText("Webseite der für diesen Dienst zuständigen Institution"))
+				.click();
+		String expectedTitle = "Corsi per adulti | Intendenza scolastica italiana | Provincia autonoma di Bolzano - Alto Adige";
+		String actualTitle = driver.getTitle();
+		Assert.assertEquals(actualTitle, expectedTitle);
+	}
 //
 //	// Verify all contact links on
 //	// http://www.provinz.bz.it/de/dienste/dienste-az.asp?bnsvaz_svid=1003544
