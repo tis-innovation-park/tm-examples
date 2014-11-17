@@ -28,7 +28,8 @@
 
   <target name="testng" depends="compile">
     <mkdir dir="${tm.testngOutput}"/>
-    <testng classpathref="classes" delegateCommandSystemProperties="true" haltonfailure="true" listeners="org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter" outputdir="${tm.testngOutput}" useDefaultListeners="false">
+    <!-- listeners="org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter" -->
+    <testng classpathref="classes" delegateCommandSystemProperties="true" haltonfailure="true" outputdir="${tm.testngOutput}" useDefaultListeners="false">
       <xmlfileset dir="." includes="testng.xml"/>
       <classpath refid="classpath"/>
       <sysproperty key="org.uncommons.reportng.title" value="My Test Report"/>

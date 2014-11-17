@@ -48,13 +48,18 @@ if [ "$CLIENT_STARTED" = "0" ]; then
         echo -e "\t<test>" >> $XML_FILE
         echo -e "\t\t<name>Bolzano</name>" >> $XML_FILE
 
-	tm-vmm --install-app $CLIENT_NAME android-server-2.21.0.apk
+        java -jar selendroid-standalone-0.12.0-with-dependencies.jar &
 
-	tm-vmm --client-exec $CLIENT_NAME "am start -n org.openqa.selenium.android.app/.MainActivity"
+        PID=$!
 
-	adb -s $ANDROID_DEVICE forward tcp:8080 tcp:8080
+        exit_on_failure $? "Could not run Selendroid server"
 
-        ant -Dtm.seleniumDriver=AndroidDriver -Dtm.testngOutput=test_results/$CLIENT_NAME-$DATE
+        sleep 10
+
+        ant -Dtm.seleniumDriver=AndroidDriver -Dtm.seleniumUrl=http://localhost:4444/wd/hub -Dtm.testngOutput=test_results/$CLIENT_NAME-$DATE
+
+        kill $PID
+
         exit_on_failure $? "Executing ant build file"
     else
 	exit_on_failure 1 "Unsupported client type: $CLIENT_TYPE"

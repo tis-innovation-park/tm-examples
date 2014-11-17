@@ -6,7 +6,7 @@ import java.net.URL;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.android.AndroidDriver;
+
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -47,7 +47,7 @@ public class TMTest {
 			switch (System.getProperty("tm.seleniumDriver")) {
 			case "AndroidDriver": {
 				if (System.getProperty("tm.seleniumUrl") == null) {
-					driver = new AndroidDriver();
+					driver = new RemoteWebDriver(DesiredCapabilities.android());
 				} else {
 					URL url;
 
@@ -58,7 +58,7 @@ public class TMTest {
 						throw new RuntimeException("Malformed Selenium URL.");
 					}
 
-					driver = new AndroidDriver(url);
+					driver = new RemoteWebDriver(url, DesiredCapabilities.android());
 				}
 
 				break;

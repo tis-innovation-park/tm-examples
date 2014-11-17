@@ -1,11 +1,13 @@
 Bolzano eGov Example
 ====================
 
-This is an extension of the simple Testing Machine example that can be found in the parent of this directory. It contains some Bolzano-specific tests, and is using [Selenium](http://www.seleniumhq.org/).
+This is an extension of the simple Testing Machine example that can be found in the parent of this directory. It contains some Bolzano-specific tests, and is using [Selenium](http://www.seleniumhq.org/) (and [Selendroid](http://selendroid.io/)).
 
 The <code>init</code> method (in the TMText.java file), which is annotated with <code>@BeforeClass</code>, will set up the <code>driver</code> object for us, and it does so before the actual testing start. The actual tests are contained in the SeleniumTests.java file.
 
 Finally, the driver is closed with a method annotated with <code>@AfterClass</code>.
+
+For AndroidDriver tests, please make sure to put the file "selendroid-standalone-0.12.0-with-dependencies.jar" in the local directory.
 
 Build and run the project simply by placing yourself in this directory (the directory containing build.xml) and type:
 
